@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Emenda {
     private int ano;
@@ -195,17 +197,20 @@ public class Emenda {
         return total;
     }
     public void imprimirDocumentos(){
+    NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt","BR"));
     System.out.println("Documentos da Emenda " + codigo + " (" + tipo + ") - Autor: " + autor);
-        if(documentosRelacionados.isEmpty()){
-            System.out.println("  — Nenhum documento relacionado —");
-        }else{
-            for(DocumentoRelacionado doc : documentosRelacionados){
-            System.out.println("  Data: " + doc.getData() + 
-                               " | Fase: " + doc.getFase() + 
-                               " | Valor: R$ " + String.format("%.2f", doc.getValor()));
-            }
+    if (documentosRelacionados == null || documentosRelacionados.isEmpty()){
+        System.out.println(" - Nenhum documento relacionado -");
+    } else {
+        for (DocumentoRelacionado doc : documentosRelacionados){
+            System.out.println(" Data: " + doc.getData()
+                    + " | Fase: " + doc.getFase()
+                    + " | Valor: " + nf.format(doc.getValor())
+                    + " | Documento: " + doc.getDocumento()
+                    + " | Favorecido: " + doc.getFavorecido());
         }
-    } 
+    }
+  }
 
 
 }

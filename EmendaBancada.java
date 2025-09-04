@@ -3,16 +3,14 @@ import java.util.List;
 
 public class EmendaBancada extends Emenda{
     private List<String> listaParlamentares;
-    private List<String> listaPartidos;
     private String ata;
     private String autorSugestao;
 
-    public EmendaBancada(String id, String autor, double valor, int ano, String ata, String autorSugestao){
-        super(id, autor, valor, ano);
+    public EmendaBancada(String ata, String autorSugestao, int data, String tipo, String autor, int numero, boolean possuiApoiador, String localidade, String funcao, String subfuncao, String programaOrcamento, String acaoOrcamentaria, String planoOrcamento, String codigo, double valorEmpenhado, double valorLiquidado, double valorPago, double valorRestosInscritos, double valorRestosCancelados, double valorRestosPagos){
+        super(data, tipo, autor, numero, possuiApoiador, localidade, funcao, subfuncao, programaOrcamento, acaoOrcamentaria, planoOrcamento, codigo, valorEmpenhado, valorLiquidado, valorPago, valorRestosInscritos, valorRestosCancelados, valorRestosPagos);
         this.ata = ata;
         this.autorSugestao = autorSugestao;
         this.listaParlamentares = new ArrayList<>();
-        this.listaPartidos = new ArrayList<>();
     }
 
 
@@ -57,32 +55,5 @@ public class EmendaBancada extends Emenda{
 
     public List<String> getListaParlamentares(){
         return listaParlamentares;
-    }
-
-    //partidos
-    public void listarPartidos(){
-        if (listaPartidos.isEmpty()){
-            System.out.println("Nenhum partido na lista.");
-        }else{
-            for (String partido : listaPartidos) {
-                System.out.println(partido);
-            }
-        }
-    }
-
-    public void addPartido(String partido){
-        listaPartidos.add(partido);
-    }
-    
-    public void removerPartido(String partido){
-        if (listaPartidos.contains(partido)) {
-            listaPartidos.remove(partido);
-        } else {
-            System.out.println("Partido não encontrado na lista.");
-        }
-    }
-
-    public List<String> getListaPartidos(){
-        return listaPartidos;
     }
 }
